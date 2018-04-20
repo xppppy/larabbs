@@ -32,7 +32,6 @@ class ImageUploadHandler
 
         // 将图片移动到我们的目标存储路径中
         $file->move($upload_path, $filename);
-
         // 如果限制了图片宽度，就进行裁剪
         if ($max_width && $extension != 'gif') {
 
