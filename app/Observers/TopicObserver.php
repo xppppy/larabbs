@@ -21,6 +21,8 @@ class TopicObserver
     //保存时，截取excerpt作为摘录，用于SEO搜索引擎优化。make_excerpt为辅助方法，在bootstrap/helpers.php
     public function saving(Topic $topic)
     {
+        $topic->body = clean($topic->body, 'user_topic_body');//使用HTMLPurifier for Laravel扩展包中的clean方法，防止xss攻击。
+
         $topic->excerpt = make_excerpt($topic->body);
     }
 }
