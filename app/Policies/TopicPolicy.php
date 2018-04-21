@@ -9,12 +9,13 @@ class TopicPolicy extends Policy
 {
     public function update(User $user, Topic $topic)
     {
-        //修改必须当前id等于登陆id
-         return $topic->user_id == $user->id;
+        //修改必须当前id等于登陆id，调用User中的isAuthorOf方法
+        return $user->isAuthorOf($topic);
     }
 
     public function destroy(User $user, Topic $topic)
     {
-        return true;
+        //调用User中的isAuthorOf方法
+        return $user->isAuthorOf($topic);
     }
 }
