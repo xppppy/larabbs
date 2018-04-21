@@ -47,15 +47,17 @@ class TopicsController extends Controller
 		return redirect()->route('topics.show', $topic->id)->with('message', '成功创建话题！');
 	}
 
-	public function edit(Topic $topic)
-	{
-        $this->authorize('update', $topic);
-		return view('topics.create_and_edit', compact('topic'));
-	}
+    public function edit(Topic $topic)
+    {
+
+        $this->authorize('update', $topic);//调用授权策略中update方法进行授权判断
+        $categories = Category::all();
+        return view('topics.create_and_edit', compact('topic', 'categories'));
+    }
 
 	public function update(TopicRequest $request, Topic $topic)
 	{
-		$this->authorize('update', $topic);
+		$this->authorize('update', $topic);//调用授权策略中update方法进行授权判断
 		$topic->update($request->all());
 
 		return redirect()->route('topics.show', $topic->id)->with('message', '修改成功！');
@@ -63,7 +65,7 @@ class TopicsController extends Controller
 
 	public function destroy(Topic $topic)
 	{
-		$this->authorize('destroy', $topic);
+		$this->authorize('destroy', $topic);//调用授权策略中destroy方法进行授权判断
 		$topic->delete();
 
 		return redirect()->route('topics.index')->with('message', '删改成功！');
