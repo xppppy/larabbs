@@ -41,3 +41,4 @@ Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload
  * {slug?}中 ? 意味着参数可选，为了兼容数据库中 Slug 为空的话题数据
  */
 Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
+Route::resource('replies', 'RepliesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
