@@ -35,10 +35,10 @@ Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'st
 Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
 //上传图片
 Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
-//将通过百度翻译过的摘录放到URI
 /*
+ * 将通过百度翻译过的摘录放到URI
  * topic 是 『隐性路由模型绑定』 的提示，将会自动注入 ID 对应的话题实体。
  * {slug?}中 ? 意味着参数可选，为了兼容数据库中 Slug 为空的话题数据
  */
 Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
-Route::resource('replies', 'RepliesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]);
