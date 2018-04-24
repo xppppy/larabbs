@@ -9,6 +9,9 @@ use Auth;
 
 class User extends Authenticatable
 {
+
+    use Traits\ActiveUserHelper;
+
     //使用 laravel-permission 提供的 Trait —— HasRoles,进行权限管理
     use HasRoles;
 
