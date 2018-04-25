@@ -23,11 +23,14 @@ class TopicsController extends Controller
     {
         //withorder,调用模型中的作用域可不加scope前缀；
         $topics = $topic->withOrder($request->order)->paginate(20);
-        //『活跃用户』集合
+
+        //“活跃用户”集合
         $active_users = $user->getActiveUsers();
-        //边栏资源推荐
+
+        //“边栏资源推荐”
         $links = $link->getAllCached();
-        return view('topics.index', compact('topics', 'active_users','links'));
+
+        return view('topics.index', compact('topics', 'active_users', 'links'));
 
 
 
